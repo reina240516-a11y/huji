@@ -1,1 +1,1203 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <title>엄마·이모와 함께하는 후지산 & 시즈오카 힐링 여행 (10/31~11/2)</title>
+  <!-- Tailwind CSS CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <!-- Font Awesome 6 -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <!-- Google Fonts: Noto Sans KR -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          fontFamily: {
+            sans: ['"Noto Sans KR"', 'sans-serif'],
+          },
+          colors: {
+            fuji: {
+              50: '#f0f5ff',
+              100: '#e0ecff',
+              600: '#1d4ed8',
+              700: '#1e40af',
+              800: '#1e3a8a',
+              900: '#172554',
+            },
+            sakura: {
+              50: '#fff1f2',
+              100: '#ffe4e6',
+              500: '#f43f5e',
+              600: '#e11d48',
+            },
+          }
+        }
+      }
+    }
+  </script>
+  <style>
+    * { -webkit-tap-highlight-color: transparent; }
+    .custom-scroll::-webkit-scrollbar { display: none; }
+    .custom-scroll { -ms-overflow-style: none; scrollbar-width: none; }
+    @media print {
+      .no-print { display: none !important; }
+      body { background-color: #ffffff !important; color: #000000 !important; }
+    }
+    body { font-size: 16px; } 
+  </style>
+</head>
+<body class="bg-slate-50 text-slate-800 antialiased min-h-screen pb-32">
 
+  <!-- TOP APP BAR -->
+  <header class="sticky top-0 z-40 bg-white/95 backdrop-blur-md border-b-2 border-slate-200 shadow-sm">
+    <div class="max-w-2xl mx-auto px-4 sm:px-6 h-16 flex items-center justify-between">
+      <div class="flex items-center space-x-3">
+        <span class="w-10 h-10 rounded-full bg-fuji-800 text-white flex items-center justify-center font-bold text-lg shadow-md">
+          <i class="fa-solid fa-mountain-sun"></i>
+        </span>
+        <div>
+          <span class="text-xs font-extrabold uppercase tracking-wider text-fuji-700">Family Tour</span>
+          <p id="topBarSubtitle" class="text-sm font-bold text-slate-900 truncate max-w-xs sm:max-w-md">엄마·이모와 함께하는 후지산 여행</p>
+        </div>
+      </div>
+      <div class="flex items-center space-x-2 no-print">
+        <button onclick="openEditModal()" class="px-3 py-1.5 text-sm font-bold text-slate-700 bg-slate-100 hover:bg-slate-200 border border-slate-300 rounded-lg flex items-center gap-1.5 transition">
+          <i class="fa-solid fa-pen-to-square text-slate-600"></i> 편집
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <!-- MAIN CONTAINER -->
+  <main class="max-w-2xl mx-auto px-4 sm:px-6 pt-4 space-y-5">
+
+    <!-- HERO TRIP BANNER -->
+    <div class="relative overflow-hidden rounded-3xl bg-gradient-to-br from-fuji-900 via-fuji-800 to-slate-900 text-white p-6 shadow-xl border border-fuji-700">
+      <div class="absolute -right-8 -bottom-8 w-40 h-40 bg-blue-400/20 rounded-full blur-3xl pointer-events-none"></div>
+      
+      <div class="flex items-center justify-between text-sm font-medium mb-3">
+        <span class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-white/15 text-blue-100 border border-white/20 font-semibold">
+          <i class="fa-solid fa-plane-departure"></i> 에어부산
+        </span>
+        <span class="text-amber-300 font-extrabold" id="heroDurationBadge">2박 3일 힐링</span>
+      </div>
+
+      <h2 id="heroTitle" class="text-xl font-bold tracking-tight text-white mb-3 leading-snug drop-shadow-md">
+        엄마·이모와 함께하는 후지산 & 시즈오카 힐링 여행
+      </h2>
+
+      <!-- 집결 및 일정 배너 -->
+      <div class="bg-black/20 rounded-xl p-3 mb-4 border border-white/10 text-sm space-y-2 backdrop-blur-sm">
+        <div class="flex items-center justify-between">
+          <span class="text-blue-200 font-medium"><i class="fa-regular fa-clock mr-1.5"></i>일정</span>
+          <span class="font-extrabold text-white" id="heroDates">10.31(금) ~ 11.02(일)</span>
+        </div>
+        <div class="flex items-center justify-between pt-2 border-t border-white/10">
+          <span class="text-blue-200 font-medium"><i class="fa-solid fa-users mr-1.5"></i>집결</span>
+          <span class="font-extrabold text-amber-300">김해공항 07:00 (2층 출국장)</span>
+        </div>
+      </div>
+
+      <!-- Quick Action Buttons -->
+      <div class="grid grid-cols-3 gap-2 pt-1 text-center">
+        <button onclick="openModal('flightsModal')" class="bg-white/10 hover:bg-white/20 p-2.5 rounded-xl transition border border-white/20 active:scale-95">
+          <i class="fa-solid fa-plane-up text-blue-200 text-lg mb-1 block"></i>
+          <span class="text-xs font-bold text-slate-50">항공권</span>
+        </button>
+        <button onclick="openModal('voucherModal')" class="bg-white/10 hover:bg-white/20 p-2.5 rounded-xl transition border border-white/20 active:scale-95">
+          <i class="fa-solid fa-car-side text-blue-200 text-lg mb-1 block"></i>
+          <span class="text-xs font-bold text-slate-50">렌트/바우처</span>
+        </button>
+        <button onclick="window.print()" class="bg-white/10 hover:bg-white/20 p-2.5 rounded-xl transition border border-white/20 active:scale-95">
+          <i class="fa-solid fa-print text-blue-200 text-lg mb-1 block"></i>
+          <span class="text-xs font-bold text-slate-50">인쇄/PDF</span>
+        </button>
+      </div>
+    </div>
+
+    <!-- WEATHER WIDGET -->
+    <div class="bg-white rounded-2xl p-4 shadow-md border border-slate-300 space-y-3">
+      <div class="flex items-center justify-between pb-2 border-b-2 border-slate-100">
+        <h3 class="text-[15px] font-bold text-slate-900 flex items-center gap-2">
+          <i class="fa-solid fa-cloud-sun text-fuji-600 text-lg"></i> 현지 날씨 (시즈오카/후지산)
+        </h3>
+      </div>
+      <div class="grid grid-cols-3 gap-3 text-center">
+        <div class="bg-blue-50/50 p-2.5 rounded-xl border border-blue-100 shadow-sm flex flex-col items-center">
+          <span class="text-[13px] font-bold text-slate-700 mb-1">10/31 (금)</span>
+          <i class="fa-solid fa-sun text-amber-500 text-3xl mb-1.5 drop-shadow-sm"></i>
+          <div class="text-base font-extrabold text-rose-600">18° <span class="text-blue-600 ml-1">9°</span></div>
+          <span class="text-xs font-semibold text-slate-600 mt-1">맑음</span>
+        </div>
+        <div class="bg-slate-50 p-2.5 rounded-xl border border-slate-200 shadow-sm flex flex-col items-center">
+          <span class="text-[13px] font-bold text-slate-700 mb-1">11/1 (토)</span>
+          <i class="fa-solid fa-cloud-sun text-slate-400 text-3xl mb-1.5 drop-shadow-sm"></i>
+          <div class="text-base font-extrabold text-rose-600">16° <span class="text-blue-600 ml-1">6°</span></div>
+          <span class="text-xs font-semibold text-slate-600 mt-1">구름조금</span>
+        </div>
+        <div class="bg-blue-50/50 p-2.5 rounded-xl border border-blue-100 shadow-sm flex flex-col items-center">
+          <span class="text-[13px] font-bold text-slate-700 mb-1">11/2 (일)</span>
+          <i class="fa-solid fa-sun text-amber-500 text-3xl mb-1.5 drop-shadow-sm"></i>
+          <div class="text-base font-extrabold text-rose-600">17° <span class="text-blue-600 ml-1">8°</span></div>
+          <span class="text-xs font-semibold text-slate-600 mt-1">맑음</span>
+        </div>
+      </div>
+      <p class="text-[11px] text-slate-500 font-medium pt-1 text-center">* 아침 저녁 호숫가는 쌀쌀하니 <b>경량패딩이나 따뜻한 겉옷</b>이 꼭 필요합니다.</p>
+    </div>
+
+    <!-- WIDGET: 현지 필수 결제액 & 엔화 환율 계산기 -->
+    <div class="bg-white rounded-2xl p-4 shadow-md border border-slate-300 space-y-4">
+      <div class="flex items-center justify-between pb-2 border-b-2 border-slate-100">
+        <h3 class="text-[15px] font-bold text-slate-900 flex items-center gap-2">
+          <i class="fa-solid fa-wallet text-fuji-700"></i> 현지 확정 경비 & 환율
+        </h3>
+      </div>
+      <div class="grid grid-cols-2 gap-3 text-[13px]">
+        <div class="bg-slate-50 p-3 rounded-xl border border-slate-300 shadow-sm">
+          <div class="text-slate-600 font-bold mb-1">리무진 버스</div>
+          <div class="font-extrabold text-slate-900">1인 편도 1,200엔</div>
+        </div>
+        <div class="bg-slate-50 p-3 rounded-xl border border-slate-300 shadow-sm">
+          <div class="text-slate-600 font-bold mb-1">렌터카 (오릭스)</div>
+          <div class="font-extrabold text-emerald-700">14,720엔 (현장)</div>
+        </div>
+      </div>
+      <div class="bg-slate-100 p-3.5 rounded-xl border border-slate-300 text-sm">
+        <div class="flex items-center justify-between gap-3">
+          <div class="flex-1">
+            <label class="block text-xs text-slate-700 font-bold mb-1.5">일본 엔화(¥) 입력</label>
+            <div class="flex items-center bg-white border-2 border-slate-300 rounded-lg px-2 py-2 focus-within:border-fuji-600 shadow-inner">
+              <span class="font-bold text-slate-700 mr-1 text-lg">¥</span>
+              <input type="number" id="foreignAmount" value="14720" oninput="convertCurrency()" class="w-full text-right font-bold text-slate-900 text-lg focus:outline-none" placeholder="0">
+            </div>
+          </div>
+          <div class="text-center pt-5 text-slate-500">
+            <i class="fa-solid fa-arrow-right-arrow-left text-lg"></i>
+          </div>
+          <div class="flex-1">
+            <label class="block text-xs text-slate-700 font-bold mb-1.5">예상 원화 금액</label>
+            <div class="bg-emerald-50 border-2 border-emerald-300 rounded-lg px-3 py-2 flex items-center justify-end h-[44px] shadow-sm">
+              <span id="krwResult" class="font-extrabold text-emerald-800 text-sm">약 124,300원</span>
+            </div>
+          </div>
+        </div>
+        <p class="text-xs text-slate-600 mt-3 font-semibold flex items-center justify-between">
+          <span>* 100엔 = 844.4원 기준</span>
+          <span class="text-emerald-700"><i class="fa-regular fa-credit-card mr-1"></i>카드 결제 시 '엔화(JPY)' 필수</span>
+        </p>
+      </div>
+    </div>
+
+    <!-- MAIN TABS -->
+    <div class="flex p-1.5 bg-slate-200 rounded-xl text-sm font-bold text-slate-600 shadow-inner no-print border border-slate-300">
+      <button onclick="switchMainTab('itinerary')" id="tabBtn-itinerary" class="flex-1 py-2.5 text-center rounded-lg bg-white text-fuji-800 shadow transition border border-slate-200">
+        <i class="fa-solid fa-map-location-dot mr-1"></i> 일정표
+      </button>
+      <button onclick="switchMainTab('checklist')" id="tabBtn-checklist" class="flex-1 py-2.5 text-center rounded-lg text-slate-600 hover:text-slate-900 transition">
+        <i class="fa-solid fa-heart mr-1"></i> 힐링수칙
+      </button>
+      <button onclick="switchMainTab('info')" id="tabBtn-info" class="flex-1 py-2.5 text-center rounded-lg text-slate-600 hover:text-slate-900 transition">
+        <i class="fa-solid fa-hotel mr-1"></i> 예약안내
+      </button>
+    </div>
+
+    <!-- TAB 1: ITINERARY VIEW -->
+    <section id="section-itinerary" class="space-y-4">
+      <!-- Day Switch Buttons -->
+      <div class="flex gap-2 overflow-x-auto pb-2 custom-scroll" id="dayButtonsContainer"></div>
+
+      <!-- Current Day Title & Summary with Edit & Add buttons -->
+      <div class="bg-white rounded-2xl p-4 border border-slate-300 shadow-md flex items-center justify-between gap-2">
+        <div class="flex-1 min-w-0">
+          <div class="flex items-center gap-2 mb-1">
+            <span class="px-2.5 py-1 rounded-md bg-fuji-800 text-white font-extrabold text-sm shadow-sm" id="dayBadge">Day 1</span>
+            <h3 class="text-[15px] font-extrabold text-slate-900 truncate" id="daySummaryTitle">드라이브 & 일몰</h3>
+          </div>
+          <p class="text-xs font-semibold text-slate-600" id="daySummaryDate">10월 31일 (금) | 일정 요약</p>
+        </div>
+        <div class="flex items-center gap-1.5 flex-shrink-0">
+          <!-- 일정 텍스트 변경 버튼 -->
+          <button onclick="openEditDayTitlePrompt()" class="no-print text-xs text-slate-700 bg-slate-100 hover:bg-slate-200 font-extrabold px-3 py-2 rounded-lg border border-slate-300 flex items-center gap-1 active:scale-95 shadow-sm" title="일정 텍스트 변경">
+            <i class="fa-solid fa-pen"></i> <span class="hidden sm:inline">텍스트수정</span>
+          </button>
+          <!-- 일정 추가 버튼 -->
+          <button onclick="addNewSchedulePrompt()" class="no-print text-xs text-fuji-800 bg-blue-50 hover:bg-blue-100 font-extrabold px-3 py-2 rounded-lg border border-blue-200 flex items-center gap-1 active:scale-95 shadow-sm">
+            <i class="fa-solid fa-plus"></i> 일정추가
+          </button>
+        </div>
+      </div>
+
+      <!-- 안내 배너 -->
+      <div class="bg-blue-50/80 border border-blue-200 rounded-xl px-3.5 py-2 text-xs font-bold text-fuji-800 flex items-center justify-between no-print">
+        <span><i class="fa-regular fa-clock mr-1.5 text-fuji-600"></i>시간 뱃지나 텍스트 수정 버튼으로 일정 제목과 시간을 언제든 바꿀 수 있어요.</span>
+      </div>
+
+      <!-- TIMELINE LIST -->
+      <div class="space-y-4 relative before:absolute before:inset-0 before:left-[21px] before:w-[3px] before:bg-slate-300 before:z-0" id="timelineContainer"></div>
+    </section>
+
+    <!-- TAB 2: PACKING & MOM-CARE TIPS -->
+    <section id="section-checklist" class="space-y-4 hidden">
+      <div class="bg-gradient-to-br from-sakura-50 to-amber-50 border border-sakura-200 rounded-2xl p-5 space-y-4 shadow-md">
+        <h4 class="text-base font-extrabold text-rose-950 flex items-center gap-2">
+          <i class="fa-solid fa-hand-holding-heart text-sakura-500 text-lg"></i> 엄마 & 이모님 맞춤 가이드
+        </h4>
+        <ul class="text-[14px] text-slate-800 space-y-3 font-medium">
+          <li class="flex items-start gap-2">
+            <i class="fa-solid fa-check-circle text-sakura-600 mt-1 text-sm"></i>
+            <span><strong>센겐공원(2일차):</strong> 정상 탑까지 약 400계단이 있습니다! 무릎에 무리가 가지 않도록 <strong>완만한 우회 산책로</strong>로 천천히 모시겠습니다.</span>
+          </li>
+          <li class="flex items-start gap-2">
+            <i class="fa-solid fa-check-circle text-sakura-600 mt-1 text-sm"></i>
+            <span><strong>방한 대책 필수:</strong> 10월 말 후지산 호숫가는 5~8도로 아침저녁이 매우 춥습니다. 가벼운 <strong>패딩이나 목도리</strong>를 꼭 챙기세요.</span>
+          </li>
+          <li class="flex items-start gap-2">
+            <i class="fa-solid fa-check-circle text-sakura-600 mt-1 text-sm"></i>
+            <span><strong>팁 문화 없음:</strong> 일본은 식당, 호텔 등 어디서든 <strong>팁을 주지 않는 것</strong>이 기본 예의입니다.</span>
+          </li>
+        </ul>
+      </div>
+
+      <div class="bg-white rounded-2xl p-5 shadow-md border border-slate-300 space-y-4">
+        <div class="flex items-center justify-between pb-3 border-b-2 border-slate-100">
+          <h3 class="text-base font-extrabold text-slate-900 flex items-center gap-2">
+            <i class="fa-solid fa-suitcase-rolling text-fuji-700"></i> 준비물 체크리스트
+          </h3>
+          <span class="text-[13px] text-fuji-700 font-extrabold bg-fuji-50 px-2 py-1 rounded" id="checklistProgress">0/0 완료</span>
+        </div>
+        <div class="space-y-2.5 text-sm" id="checklistItems"></div>
+        <div class="pt-3 flex gap-2 no-print">
+          <input type="text" id="newChecklistInput" placeholder="추가 준비물 입력..." class="flex-1 text-sm font-semibold border-2 border-slate-200 rounded-xl px-3 py-2.5 focus:outline-none focus:border-fuji-600">
+          <button onclick="addChecklistItem()" class="px-4 py-2.5 bg-slate-800 text-white text-sm font-bold rounded-xl hover:bg-slate-900 transition">추가</button>
+        </div>
+      </div>
+    </section>
+
+    <!-- TAB 3: HOTEL & RENTAL CAR GUIDE -->
+    <section id="section-info" class="space-y-4 hidden">
+      <div class="bg-white rounded-2xl p-5 shadow-md border border-slate-300 space-y-3">
+        <div class="flex items-center justify-between">
+          <span class="text-sm font-extrabold text-fuji-900 flex items-center gap-1.5">
+            <i class="fa-solid fa-car text-fuji-700"></i> 오릭스 렌터카 (시즈오카역)
+          </span>
+          <span class="text-xs bg-amber-100 text-amber-900 border border-amber-300 px-2 py-1 rounded-md font-extrabold shadow-sm">14,720엔 현장결제</span>
+        </div>
+        <p class="text-[14px] text-slate-700 font-medium leading-relaxed">
+          <strong>수령:</strong> 10/31(금) 14:00 (시즈오카역앞점)<br>
+          <strong>반납:</strong> 11/01(토) 16:00 이전<br>
+          <span class="text-rose-600 font-bold">★ 준비물: 국제운전면허증 + 한국면허증 + 여권</span><br>
+          * 반납 후 도보 2분 거리에 2일차 숙소가 있습니다.
+        </p>
+        <div class="pt-2">
+          <a href="https://www.google.com/maps/search/?api=1&query=ORIX+Rent-A-Car+Shizuoka+Station" target="_blank" class="w-full text-center block py-2.5 bg-blue-50 border border-blue-200 hover:bg-blue-100 text-blue-800 rounded-xl text-sm font-extrabold shadow-sm">
+            <i class="fa-solid fa-map-location-dot mr-1"></i> 렌터카 매장 구글지도 보기
+          </a>
+        </div>
+      </div>
+
+      <div class="bg-white rounded-2xl p-5 shadow-md border border-slate-300 space-y-2">
+        <div class="flex items-center justify-between mb-1">
+          <span class="text-xs font-bold bg-purple-100 text-purple-800 px-2.5 py-1 rounded-md">1일차 숙소 (후지요시다)</span>
+          <span class="text-xs text-purple-700 font-extrabold">온천 완비</span>
+        </div>
+        <h4 class="text-[15px] font-extrabold text-slate-900">더 그란 리조트 프린세스 후지요시다</h4>
+        <p class="text-sm text-slate-600 font-medium mb-3">후지산 조망과 따뜻한 대욕탕 온천을 갖춘 힐링 리조트</p>
+        <a href="https://www.google.com/maps/search/?api=1&query=The+Gran+Resort+Princess+Fujiyoshida" target="_blank" class="w-full text-center block py-2 bg-slate-100 border border-slate-300 hover:bg-slate-200 text-slate-800 rounded-xl text-sm font-bold">
+          <i class="fa-solid fa-map-pin mr-1 text-rose-500"></i> 리조트 위치 확인
+        </a>
+      </div>
+
+      <div class="bg-white rounded-2xl p-5 shadow-md border border-slate-300 space-y-2">
+        <div class="flex items-center justify-between mb-1">
+          <span class="text-xs font-bold bg-purple-100 text-purple-800 px-2.5 py-1 rounded-md">2일차 숙소 (시즈오카역)</span>
+          <span class="text-xs text-fuji-800 font-extrabold">역 바로 앞</span>
+        </div>
+        <h4 class="text-[15px] font-extrabold text-slate-900">호텔 아소시아 시즈오카</h4>
+        <p class="text-sm text-slate-600 font-medium mb-3">렌터카 반납처 도보 2분. 오뎅거리/이자카야 이동 용이.</p>
+        <a href="https://www.google.com/maps/search/?api=1&query=Hotel+Associa+Shizuoka" target="_blank" class="w-full text-center block py-2 bg-slate-100 border border-slate-300 hover:bg-slate-200 text-slate-800 rounded-xl text-sm font-bold">
+          <i class="fa-solid fa-map-pin mr-1 text-rose-500"></i> 호텔 위치 확인
+        </a>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- BOTTOM FLOATING DOCK -->
+  <div class="fixed bottom-4 inset-x-0 max-w-2xl mx-auto px-4 sm:px-6 z-30 no-print">
+    <div class="bg-slate-900/95 backdrop-blur-md border border-slate-700 rounded-2xl p-3 px-4 shadow-2xl flex items-center justify-between text-white">
+      <div class="flex items-center gap-2">
+        <button onclick="sharePlan()" class="flex items-center gap-2 bg-fuji-600 hover:bg-fuji-500 text-sm font-extrabold px-4 py-2.5 rounded-xl transition shadow-lg active:scale-95">
+          <i class="fa-solid fa-share-nodes"></i>
+          <span>가족에게 공유하기</span>
+        </button>
+        <button onclick="copyCurrentUrl()" class="p-2.5 text-slate-300 hover:text-white rounded-xl hover:bg-slate-800 border border-transparent hover:border-slate-700 transition text-sm active:scale-95" title="링크 복사">
+          <i class="fa-solid fa-link"></i>
+        </button>
+      </div>
+      <div class="text-right">
+        <span class="text-[11px] text-slate-400 block font-semibold">자동저장 지원</span>
+        <span class="text-[13px] font-extrabold text-amber-300">수정 시 바로 반영</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- MODAL: FLIGHTS INFO -->
+  <div id="flightsModal" class="fixed inset-0 bg-slate-900/70 backdrop-blur-sm z-50 flex items-center justify-center p-4 hidden">
+    <div class="bg-white w-full max-w-lg rounded-3xl p-6 shadow-2xl border border-slate-200 space-y-4">
+      <div class="flex items-center justify-between border-b-2 border-slate-100 pb-3">
+        <h3 class="text-base font-extrabold text-slate-900 flex items-center gap-2">
+          <i class="fa-solid fa-plane-departure text-fuji-700 text-lg"></i> 항공권 상세 정보
+        </h3>
+        <button onclick="closeModal('flightsModal')" class="text-slate-400 hover:text-rose-500 p-1 transition text-xl">
+          <i class="fa-solid fa-xmark"></i>
+        </button>
+      </div>
+      <div class="space-y-4 text-sm font-medium">
+        <div class="border-2 border-blue-200 bg-blue-50 rounded-xl p-4 space-y-2">
+          <div class="flex justify-between items-center">
+            <span class="font-extrabold text-fuji-900 text-[15px]">가는 편 : BX9631</span>
+            <span class="text-xs bg-blue-200 text-fuji-900 px-2.5 py-1 rounded font-bold shadow-sm">10/31 (금)</span>
+          </div>
+          <div class="flex items-center justify-between font-mono font-extrabold text-slate-800 text-base py-1">
+            <span>부산 09:05</span>
+            <i class="fa-solid fa-arrow-right text-slate-400 text-sm"></i>
+            <span>시즈오카 10:45</span>
+          </div>
+          <p class="text-[12px] text-rose-600 font-extrabold bg-rose-50 p-1.5 rounded text-center">* 김해공항 07:00 출국장 2층 집결!</p>
+        </div>
+        <div class="border-2 border-emerald-200 bg-emerald-50 rounded-xl p-4 space-y-2">
+          <div class="flex justify-between items-center">
+            <span class="font-extrabold text-emerald-900 text-[15px]">오는 편 : BX9632</span>
+            <span class="text-xs bg-emerald-200 text-emerald-900 px-2.5 py-1 rounded font-bold shadow-sm">11/02 (일)</span>
+          </div>
+          <div class="flex items-center justify-between font-mono font-extrabold text-slate-800 text-base py-1">
+            <span>시즈오카 12:00</span>
+            <i class="fa-solid fa-arrow-right text-slate-400 text-sm"></i>
+            <span>부산 14:00</span>
+          </div>
+          <p class="text-[12px] text-slate-600 font-bold">* 시즈오카역 북쪽출구 09:00 공항버스 탑승</p>
+        </div>
+      </div>
+      <button onclick="closeModal('flightsModal')" class="w-full mt-2 py-3 bg-slate-800 hover:bg-slate-900 text-white text-sm font-extrabold rounded-xl shadow-md transition active:scale-95">
+        확인하고 닫기
+      </button>
+    </div>
+  </div>
+
+  <!-- MODAL: VOUCHER / BOOKINGS -->
+  <div id="voucherModal" class="fixed inset-0 bg-slate-900/70 backdrop-blur-sm z-50 flex items-center justify-center p-4 hidden">
+    <div class="bg-white w-full max-w-lg rounded-3xl p-6 shadow-2xl border border-slate-200 space-y-4 max-h-[85vh] overflow-y-auto">
+      <div class="flex items-center justify-between border-b-2 border-slate-100 pb-3">
+        <h3 class="text-base font-extrabold text-slate-900 flex items-center gap-2">
+          <i class="fa-solid fa-receipt text-fuji-700 text-lg"></i> 주요 경비 & 바우처
+        </h3>
+        <button onclick="closeModal('voucherModal')" class="text-slate-400 hover:text-rose-500 p-1 transition text-xl">
+          <i class="fa-solid fa-xmark"></i>
+        </button>
+      </div>
+      <div class="space-y-3 text-sm">
+        <div class="border-2 border-amber-300 rounded-xl p-3.5 bg-amber-50 space-y-1.5 shadow-sm">
+          <div class="flex items-center justify-between">
+            <span class="text-[11px] font-extrabold text-amber-800 bg-amber-200 px-2 py-0.5 rounded">현장 결제 예정 (렌터카)</span>
+            <span class="text-[11px] font-bold text-amber-900">10/31 ~ 11/01</span>
+          </div>
+          <p class="font-extrabold text-slate-900 text-[15px]">오릭스 렌터카 (시즈오카역앞점)</p>
+          <p class="text-sm font-extrabold text-rose-700">결제액: 14,720엔 (카드/현금)</p>
+          <p class="text-xs font-semibold text-slate-600">필수: 국제면허증 + 한국면허증 + 여권</p>
+          <div class="pt-1">
+            <a href="https://www.google.com/maps/search/?api=1&query=ORIX+Rent-A-Car+Shizuoka+Station" target="_blank" class="inline-flex items-center gap-1 text-xs font-extrabold text-amber-900 bg-white/80 hover:bg-white px-2.5 py-1 rounded-lg border border-amber-300">
+              <i class="fa-solid fa-location-dot text-rose-500"></i> 매장 지도 보기
+            </a>
+          </div>
+        </div>
+        <div class="border-2 border-purple-200 rounded-xl p-3.5 bg-purple-50/50 space-y-1.5 shadow-sm">
+          <div class="flex items-center justify-between">
+            <span class="text-[11px] font-extrabold text-purple-800 bg-purple-100 border border-purple-200 px-2 py-0.5 rounded">1일차 숙소 (10/31 금)</span>
+            <span class="text-[11px] font-extrabold text-purple-700"><i class="fa-solid fa-hot-tub-person mr-1"></i>온천 리조트</span>
+          </div>
+          <p class="font-extrabold text-slate-900 text-[15px]">더 그란 리조트 프린세스 후지요시다</p>
+          <p class="text-xs font-semibold text-slate-600">후지산 조망 / 온천 대욕탕 / 조식 포함</p>
+          <div class="pt-1">
+            <a href="https://www.google.com/maps/search/?api=1&query=The+Gran+Resort+Princess+Fujiyoshida" target="_blank" class="inline-flex items-center gap-1 text-xs font-extrabold text-purple-900 bg-white hover:bg-purple-100 px-2.5 py-1 rounded-lg border border-purple-200">
+              <i class="fa-solid fa-location-dot text-rose-500"></i> 1일차 호텔 지도 보기
+            </a>
+          </div>
+        </div>
+        <div class="border-2 border-blue-200 rounded-xl p-3.5 bg-blue-50/50 space-y-1.5 shadow-sm">
+          <div class="flex items-center justify-between">
+            <span class="text-[11px] font-extrabold text-fuji-800 bg-blue-100 border border-blue-200 px-2 py-0.5 rounded">2일차 숙소 (11/01 토)</span>
+            <span class="text-[11px] font-extrabold text-fuji-700"><i class="fa-solid fa-train-subway mr-1"></i>시즈오카역 앞</span>
+          </div>
+          <p class="font-extrabold text-slate-900 text-[15px]">호텔 아소시아 시즈오카</p>
+          <p class="text-xs font-semibold text-slate-600">시즈오카역 북쪽출구 도보 1분 (렌터카 반납처 도보 2분) / 조식 뷔페 포함</p>
+          <p class="text-[11px] font-bold text-emerald-700 bg-emerald-50 px-2 py-1 rounded border border-emerald-200">
+            * 3일차 아침 호텔 바로 앞 14번 승강장에서 공항 리무진 탑승
+          </p>
+          <div class="pt-1">
+            <a href="https://www.google.com/maps/search/?api=1&query=Hotel+Associa+Shizuoka" target="_blank" class="inline-flex items-center gap-1 text-xs font-extrabold text-fuji-800 bg-white hover:bg-blue-100 px-2.5 py-1 rounded-lg border border-blue-200">
+              <i class="fa-solid fa-location-dot text-rose-500"></i> 2일차 호텔 지도 보기
+            </a>
+          </div>
+        </div>
+      </div>
+      <button onclick="closeModal('voucherModal')" class="w-full mt-2 py-3 bg-slate-800 hover:bg-slate-900 text-white text-sm font-extrabold rounded-xl shadow-md transition active:scale-95">
+        닫기
+      </button>
+    </div>
+  </div>
+
+  <!-- MODAL: SCHEDULE ITEM EDIT / ADD -->
+  <div id="scheduleItemModal" class="fixed inset-0 bg-slate-900/70 backdrop-blur-sm z-50 flex items-end sm:items-center justify-center p-0 sm:p-4 hidden">
+    <div class="bg-white w-full max-w-xl rounded-t-3xl sm:rounded-3xl p-6 shadow-2xl space-y-4 max-h-[90vh] overflow-y-auto border-t-4 border-fuji-700 sm:border-0">
+      <div class="flex items-center justify-between border-b-2 border-slate-100 pb-3">
+        <h3 id="scheduleModalHeader" class="text-base font-extrabold text-slate-900 flex items-center gap-2">
+          <i class="fa-regular fa-clock text-fuji-700 text-lg"></i> 일정 및 시간 편집
+        </h3>
+        <button onclick="closeModal('scheduleItemModal')" class="text-slate-400 hover:text-rose-500 p-1 text-xl">
+          <i class="fa-solid fa-xmark"></i>
+        </button>
+      </div>
+      <div class="space-y-3.5 text-sm">
+        <div class="grid grid-cols-2 gap-3">
+          <div>
+            <label class="block font-extrabold text-fuji-900 mb-1">
+              <i class="fa-regular fa-clock mr-1 text-fuji-600"></i>시간 (자유 입력)
+            </label>
+            <input type="text" id="schedTimeInput" placeholder="예: 09:00 ~ 10:30" class="w-full border-2 border-fuji-200 bg-blue-50/40 rounded-xl p-2.5 font-mono font-extrabold text-slate-900 focus:border-fuji-600 focus:bg-white focus:outline-none">
+          </div>
+          <div>
+            <label class="block font-bold text-slate-700 mb-1">종류 (아이콘/색상)</label>
+            <select id="schedCategorySelect" onchange="syncCategoryDefaultLabel()" class="w-full border-2 border-slate-300 rounded-xl p-2.5 font-bold text-slate-800 focus:border-fuji-600 focus:outline-none bg-white">
+              <option value="tour">🚗 이동 / 관광</option>
+              <option value="food">🍴 식사 / 카페</option>
+              <option value="hotel">🛏️ 숙소 / 휴식</option>
+              <option value="flight">✈️ 공항 / 항공</option>
+            </select>
+          </div>
+        </div>
+        <div>
+          <label class="block font-bold text-slate-700 mb-1">우측 상단 뱃지 문구</label>
+          <input type="text" id="schedCategoryNameInput" placeholder="예: 관광명소, 중식, 체크인 등" class="w-full border-2 border-slate-300 rounded-xl p-2.5 font-semibold focus:border-fuji-600 focus:outline-none">
+        </div>
+        <div>
+          <label class="block font-bold text-slate-700 mb-1">일정 / 장소 제목</label>
+          <input type="text" id="schedTitleInput" placeholder="일정 제목을 입력하세요" class="w-full border-2 border-slate-300 rounded-xl p-2.5 font-extrabold text-slate-900 focus:border-fuji-600 focus:outline-none">
+        </div>
+        <div>
+          <label class="block font-bold text-slate-700 mb-1">세부 설명</label>
+          <textarea id="schedDetailsInput" rows="2" placeholder="세부 내용이나 동선을 입력하세요" class="w-full border-2 border-slate-300 rounded-xl p-2.5 font-medium text-slate-800 focus:border-fuji-600 focus:outline-none"></textarea>
+        </div>
+        <div>
+          <label class="block font-bold text-slate-700 mb-1">꿀팁 / 메모 (선택)</label>
+          <input type="text" id="schedMemoInput" placeholder="어르신 케어 팁이나 준비물 메모" class="w-full border-2 border-slate-300 rounded-xl p-2.5 font-medium focus:border-fuji-600 focus:outline-none">
+        </div>
+        <div>
+          <label class="block font-bold text-slate-700 mb-1">구글 지도 검색어 (선택)</label>
+          <input type="text" id="schedLocationInput" placeholder="비워두면 제목으로 검색됩니다" class="w-full border-2 border-slate-300 rounded-xl p-2.5 font-medium text-slate-600 focus:border-fuji-600 focus:outline-none">
+        </div>
+      </div>
+      <div class="pt-3 flex gap-2.5">
+        <button onclick="saveScheduleItemModal()" class="flex-1 py-3 bg-fuji-800 hover:bg-fuji-900 text-white font-extrabold rounded-xl shadow-md transition active:scale-95">
+          저장하기
+        </button>
+        <button onclick="closeModal('scheduleItemModal')" class="px-5 py-3 bg-slate-100 text-slate-700 hover:bg-slate-200 border border-slate-300 font-bold rounded-xl transition active:scale-95">
+          취소
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- MODAL: DAY TITLE EDIT (일정 텍스트 변경 모달) -->
+  <div id="dayTitleModal" class="fixed inset-0 bg-slate-900/70 backdrop-blur-sm z-50 flex items-center justify-center p-4 hidden">
+    <div class="bg-white w-full max-w-md rounded-3xl p-6 shadow-2xl space-y-4 border-t-4 border-fuji-700">
+      <div class="flex items-center justify-between border-b-2 border-slate-100 pb-3">
+        <h3 class="text-base font-extrabold text-slate-900 flex items-center gap-2">
+          <i class="fa-solid fa-pen text-fuji-700 text-lg"></i> Day <span id="editDayNumSpan">1</span> 일정 텍스트 변경
+        </h3>
+        <button onclick="closeModal('dayTitleModal')" class="text-slate-400 hover:text-rose-500 p-1 text-xl">
+          <i class="fa-solid fa-xmark"></i>
+        </button>
+      </div>
+      <div class="space-y-3 text-sm">
+        <div>
+          <label class="block font-bold text-slate-700 mb-1.5">Day 요약 타이틀 (예: 드라이브 & 일몰)</label>
+          <input type="text" id="editDaySummaryInput" class="w-full border-2 border-slate-300 rounded-xl p-3 font-extrabold text-slate-900 focus:border-fuji-600 focus:outline-none" placeholder="일정 타이틀 입력">
+        </div>
+        <div>
+          <label class="block font-bold text-slate-700 mb-1.5">날짜 및 부가 설명 (예: 10월 31일 (금) | 드라이브)</label>
+          <input type="text" id="editDayFullDateInput" class="w-full border-2 border-slate-300 rounded-xl p-3 font-semibold text-slate-700 focus:border-fuji-600 focus:outline-none" placeholder="날짜 설명 입력">
+        </div>
+      </div>
+      <div class="pt-2 flex gap-2.5">
+        <button onclick="saveDayTitleChanges()" class="flex-1 py-3 bg-fuji-800 hover:bg-fuji-900 text-white font-extrabold rounded-xl shadow-md transition active:scale-95">
+          저장하기
+        </button>
+        <button onclick="closeModal('dayTitleModal')" class="px-5 py-3 bg-slate-100 text-slate-700 hover:bg-slate-200 border border-slate-300 font-bold rounded-xl transition active:scale-95">
+          취소
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- MODAL: EDIT PLANNER -->
+  <div id="editModal" class="fixed inset-0 bg-slate-900/70 backdrop-blur-sm z-50 flex items-end sm:items-center justify-center p-0 sm:p-4 hidden">
+    <div class="bg-white w-full max-w-xl rounded-t-3xl sm:rounded-3xl p-6 shadow-2xl space-y-4 max-h-[90vh] overflow-y-auto border-t-4 border-fuji-700 sm:border-0">
+      <div class="flex items-center justify-between border-b-2 border-slate-100 pb-3">
+        <h3 class="text-base font-extrabold text-slate-900 flex items-center gap-2">
+          <i class="fa-solid fa-sliders text-fuji-700 text-lg"></i> 여행 정보 기본 설정
+        </h3>
+        <button onclick="closeModal('editModal')" class="text-slate-400 hover:text-rose-500 p-1 text-xl">
+          <i class="fa-solid fa-xmark"></i>
+        </button>
+      </div>
+      <div class="space-y-4 text-sm">
+        <div>
+          <label class="block font-bold text-slate-700 mb-1.5">여행 제목</label>
+          <input type="text" id="editTripTitle" class="w-full border-2 border-slate-300 rounded-xl p-3 font-semibold focus:border-fuji-600 focus:outline-none">
+        </div>
+        <div>
+          <label class="block font-bold text-slate-700 mb-1.5">여행 날짜 표기</label>
+          <input type="text" id="editDates" class="w-full border-2 border-slate-300 rounded-xl p-3 font-semibold focus:border-fuji-600 focus:outline-none">
+        </div>
+      </div>
+      <div id="resetConfirmBox" class="hidden bg-rose-50 border-2 border-rose-200 rounded-xl p-3.5 text-xs space-y-2">
+        <p class="font-extrabold text-rose-800">초기 기본 일정으로 되돌리시겠습니까? (추가/수정한 내용이 모두 초기화됩니다)</p>
+        <div class="flex gap-2">
+          <button onclick="confirmResetTrip()" class="px-3 py-1.5 bg-rose-600 text-white font-extrabold rounded-lg">예, 초기화합니다</button>
+          <button onclick="document.getElementById('resetConfirmBox').classList.add('hidden')" class="px-3 py-1.5 bg-white text-slate-700 border border-slate-300 font-bold rounded-lg">취소</button>
+        </div>
+      </div>
+      <div class="pt-4 flex gap-3">
+        <button onclick="saveHeaderEdits()" class="flex-1 py-3 bg-fuji-800 hover:bg-fuji-900 text-white font-extrabold rounded-xl shadow-md transition active:scale-95">
+          저장하기
+        </button>
+        <button onclick="resetToInitialTrip()" class="px-4 py-3 bg-slate-100 text-rose-600 hover:bg-rose-50 border border-slate-300 font-bold rounded-xl transition active:scale-95">
+          초기화
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- TOAST NOTIFICATION -->
+  <div id="toast" class="fixed top-20 left-1/2 -translate-x-1/2 z-[60] bg-slate-900 text-white text-sm font-bold px-5 py-3 rounded-full shadow-2xl pointer-events-none opacity-0 transition-opacity duration-300 flex items-center gap-2 border border-slate-700">
+    <i class="fa-solid fa-circle-check text-emerald-400 text-lg"></i>
+    <span id="toastMsg">작업이 완료되었습니다.</span>
+  </div>
+
+  <!-- APPLICATION DATA & LOGIC -->
+  <script>
+    const INITIAL_TRIP_DATA = {
+      title: "엄마·이모와 함께하는 후지산 & 시즈오카 힐링 여행",
+      subtitle: "엄마·이모와 함께하는 후지산 여행",
+      dates: "2026.10.31(금) ~ 11.02(일)",
+      durationBadge: "2박 3일 힐링",
+      hotel1: "더 그란 리조트 프린세스 후지요시다",
+      hotel2: "호텔 아소시아 시즈오카",
+      currentDay: 1,
+      checklist: [
+        { id: 1, text: "여권 (유효기간 6개월 이상 잔여 확인)", checked: true },
+        { id: 2, text: "운전자 국제운전면허증 + 한국 면허증 + 여권 지참", checked: true },
+        { id: 3, text: "렌터카 현장 결제용 엔화 14,720엔 (또는 충전식 해외카드)", checked: true },
+        { id: 4, text: "공항 리무진 버스비 (1인 편도 1,200엔 현금 또는 IC카드)", checked: true },
+        { id: 5, text: "110V 돼지코 어댑터 2~3개 & 보조배터리", checked: true },
+        { id: 6, text: "어르신 편한 운동화 & 가벼운 바람막이/경량패딩", checked: false },
+        { id: 7, text: "상비약 (소화제, 파스, 관절통약, 진통제, 개인 복용약)", checked: false },
+        { id: 8, text: "일본 e-SIM 또는 포켓와이파이 신청 완료", checked: false }
+      ],
+      days: [
+        {
+          dayNumber: 1,
+          dateLabel: "10.31(금)",
+          fullDate: "10월 31일 (금) | 드라이브 & 일몰",
+          summary: "공항 → 국도 드라이브 → 모토스호 일몰",
+          items: [
+            {
+              time: "07:00",
+              category: "flight",
+              categoryName: "공항 집결",
+              badgeColor: "bg-blue-100 text-blue-800 border-blue-300",
+              title: "김해공항(PUS) 국제선 집결",
+              details: "대구/경주에서 출발 후 2층 출국장에서 만나요!",
+              memo: "와이파이 수령 및 가벼운 모닝 티타임",
+              locationQuery: "김해국제공항 국제선"
+            },
+            {
+              time: "09:05 ~ 10:45",
+              category: "flight",
+              categoryName: "항공편",
+              badgeColor: "bg-blue-100 text-blue-800 border-blue-300",
+              title: "에어부산 탑승 (시즈오카행)",
+              details: "착륙 20분 전 창밖으로 후지산이 보입니다.",
+              memo: "",
+              locationQuery: "Mt. Fuji Shizuoka Airport"
+            },
+            {
+              time: "11:35 ~ 12:30",
+              category: "tour",
+              categoryName: "리무진",
+              badgeColor: "bg-amber-100 text-amber-800 border-amber-300",
+              title: "공항 리무진 이동 (공항→시즈오카역)",
+              details: "1인 1,200엔 / 약 50분 소요. 북쪽출구 하차.",
+              memo: "편하게 짐 싣고 앉아서 이동합니다.",
+              locationQuery: "Shizuoka Station"
+            },
+            {
+              time: "14:00",
+              category: "tour",
+              categoryName: "렌트",
+              badgeColor: "bg-emerald-100 text-emerald-800 border-emerald-300",
+              title: "오릭스 렌터카 차량 수령",
+              details: "14,720엔 현장결제. 짐 싣고 본격 여행 시작!",
+              memo: "국제면허증, 여권 꼭 준비",
+              locationQuery: "ORIX Rent-A-Car Shizuoka Station"
+            },
+            {
+              time: "16:00 ~ 16:50",
+              category: "tour",
+              categoryName: "일몰 관광",
+              badgeColor: "bg-fuji-100 text-fuji-800 border-fuji-300",
+              title: "모토스호 후지산 노을 감상",
+              details: "일본 1000엔 지폐 뒷면의 웅장한 후지산 뷰 명소.",
+              memo: "어두워지기 전 도착하여 엄마, 이모 인생사진 촬영",
+              locationQuery: "Motosuko"
+            },
+            {
+              time: "17:30",
+              category: "hotel",
+              categoryName: "체크인",
+              badgeColor: "bg-purple-100 text-purple-800 border-purple-300",
+              title: "리조트 체크인 및 저녁식사",
+              details: "후지요시다 온천 리조트. 식사 후 따뜻한 온천욕.",
+              memo: "",
+              locationQuery: "The Gran Resort Princess Fujiyoshida"
+            }
+          ]
+        },
+        {
+          dayNumber: 2,
+          dateLabel: "11.01(토)",
+          fullDate: "11월 01일 (토) | 호수 & 도심",
+          summary: "우부야가사키 → 센겐공원 → 시즈오카 시내",
+          items: [
+            {
+              time: "06:30 ~ 08:30",
+              category: "tour",
+              categoryName: "아침 산책",
+              badgeColor: "bg-emerald-100 text-emerald-800 border-emerald-300",
+              title: "가와구치호 모닝 산책 & 조식",
+              details: "호수에 비친 후지산 반영 감상 후 호텔 조식.",
+              memo: "아침 공기가 차가우니 따뜻한 겉옷 필수",
+              locationQuery: "Kawaguchiko"
+            },
+            {
+              time: "09:40 ~ 11:20",
+              category: "tour",
+              categoryName: "관광명소",
+              badgeColor: "bg-amber-100 text-amber-800 border-amber-300",
+              title: "아라쿠라야마 센겐공원 뷰 관람",
+              details: "일본 전통 탑과 후지산이 어우러지는 대표 명소.",
+              memo: "어르신 무릎 보호를 위해 계단 대신 '완만한 경사로' 이용",
+              locationQuery: "Arakurayama Sengen Park"
+            },
+            {
+              time: "12:00 ~ 13:50",
+              category: "food",
+              categoryName: "중식 (미정)",
+              badgeColor: "bg-rose-100 text-rose-800 border-rose-300",
+              title: "[점심 미정] 인근 맛집 식사",
+              details: "야마나시 명물 호우토우(단호박 칼국수) 등 추천.",
+              memo: "식사 후 14시에 시즈오카 시내 방향으로 출발",
+              locationQuery: "Yamanakako"
+            },
+            {
+              time: "15:50",
+              category: "tour",
+              categoryName: "차량반납",
+              badgeColor: "bg-emerald-100 text-emerald-800 border-emerald-300",
+              title: "렌터카 주유 및 반납",
+              details: "시즈오카역앞 오릭스 매장에 무사히 차량 반납.",
+              memo: "반납처 길 건너 바로 호텔이라 이동 2분",
+              locationQuery: "ORIX Rent-A-Car Shizuoka Station"
+            },
+            {
+              time: "16:15 ~ 19:00",
+              category: "hotel",
+              categoryName: "호텔/쇼핑",
+              badgeColor: "bg-purple-100 text-purple-800 border-purple-300",
+              title: "아소시아 호텔 체크인 & 휴식",
+              details: "짐 풀고 편히 쉬다가 역 주변 백화점이나 드럭스토어 구경.",
+              memo: "",
+              locationQuery: "Hotel Associa Shizuoka"
+            },
+            {
+              time: "19:00 ~",
+              category: "food",
+              categoryName: "저녁식사",
+              badgeColor: "bg-rose-100 text-rose-800 border-rose-300",
+              title: "오뎅거리 구경 & 이자카야 저녁",
+              details: "시즈오카 명물 검은오뎅 골목 구경하고 깔끔한 식당에서 식사.",
+              memo: "가족끼리 맥주 한잔 곁들이며 2일차 힐링 마무리",
+              locationQuery: "Aoba Oden Yokocho"
+            }
+          ]
+        },
+        {
+          dayNumber: 3,
+          dateLabel: "11.02(일)",
+          fullDate: "11월 02일 (일) | 편안한 귀국",
+          summary: "호텔 조식 → 리무진 탑승 → 부산 도착",
+          items: [
+            {
+              time: "07:30 ~ 08:40",
+              category: "hotel",
+              categoryName: "호텔 조식",
+              badgeColor: "bg-purple-100 text-purple-800 border-purple-300",
+              title: "아소시아 조식 뷔페 식사",
+              details: "신선한 재료로 준비된 호텔 조식을 여유있게 드세요.",
+              memo: "식사 후 8시 45분에 로비 체크아웃 및 버스정류장 이동",
+              locationQuery: "Hotel Associa Shizuoka"
+            },
+            {
+              time: "09:00 ~ 09:50",
+              category: "tour",
+              categoryName: "공항버스",
+              badgeColor: "bg-blue-100 text-blue-800 border-blue-300",
+              title: "14번 승강장 공항 리무진 탑승",
+              details: "호텔 바로 앞 정류장에서 정각 9시에 출발합니다.",
+              memo: "1인 1,200엔 준비 (하차시 지불)",
+              locationQuery: "Shizuoka Station North Exit"
+            },
+            {
+              time: "10:00 ~ 11:30",
+              category: "flight",
+              categoryName: "공항 수속",
+              badgeColor: "bg-amber-100 text-amber-800 border-amber-300",
+              title: "공항 수속 및 마지막 면세 쇼핑",
+              details: "수하물 위탁 후 시즈오카 녹차, 디저트 등 구입",
+              memo: "",
+              locationQuery: "Mt. Fuji Shizuoka Airport"
+            },
+            {
+              time: "12:00 ~ 14:00",
+              category: "flight",
+              categoryName: "귀국",
+              badgeColor: "bg-blue-100 text-blue-800 border-blue-300",
+              title: "에어부산 탑승 (부산행)",
+              details: "부산 김해공항(PUS) 14시 도착 예정.",
+              memo: "",
+              locationQuery: "김해국제공항"
+            },
+            {
+              time: "14:30 ~",
+              category: "tour",
+              categoryName: "가족 해산",
+              badgeColor: "bg-fuji-100 text-fuji-800 border-fuji-300",
+              title: "짐 찾고 대구/경주 안전 귀가",
+              details: "즐거웠던 엄마, 이모님과의 후지산 힐링 여행 종료!",
+              memo: "사랑합니다 가족들 ❤️",
+              locationQuery: "김해국제공항"
+            }
+          ]
+        }
+      ]
+    };
+
+    const STORAGE_KEY = 'fuji_shizuoka_trip_v5';
+    let tripData = JSON.parse(localStorage.getItem(STORAGE_KEY));
+    if (!tripData) {
+      const prevData = JSON.parse(localStorage.getItem('fuji_shizuoka_trip_v4')) || JSON.parse(localStorage.getItem('fuji_shizuoka_trip_v3'));
+      if (prevData) {
+        tripData = prevData;
+        localStorage.setItem(STORAGE_KEY, JSON.stringify(tripData));
+      } else {
+        tripData = JSON.parse(JSON.stringify(INITIAL_TRIP_DATA));
+      }
+    }
+    let editingScheduleIndex = null;
+
+    function initApp() {
+      renderHeader();
+      renderDayTabs();
+      renderTimeline();
+      renderChecklist();
+      convertCurrency();
+    }
+
+    function renderHeader() {
+      document.getElementById('topBarSubtitle').innerText = tripData.subtitle || tripData.title;
+      document.getElementById('heroTitle').innerText = tripData.title;
+      document.getElementById('heroDates').innerText = tripData.dates;
+      document.getElementById('heroDurationBadge').innerText = tripData.durationBadge || "2박 3일 힐링";
+    }
+
+    function renderDayTabs() {
+      const container = document.getElementById('dayButtonsContainer');
+      container.innerHTML = '';
+
+      tripData.days.forEach(day => {
+        const isActive = day.dayNumber === tripData.currentDay;
+        const btn = document.createElement('button');
+        btn.onclick = () => selectDay(day.dayNumber);
+        btn.className = `flex-1 min-w-[100px] py-2.5 px-3 rounded-xl text-[14px] font-extrabold transition flex flex-col items-center gap-1 border-2 ${
+          isActive 
+            ? 'bg-fuji-800 text-white border-fuji-800 shadow-md scale-[1.02]' 
+            : 'bg-white text-slate-500 border-slate-200 hover:bg-slate-50'
+        }`;
+        btn.innerHTML = `
+          <span>Day ${day.dayNumber}</span>
+          <span class="text-[12px] font-semibold ${isActive ? 'text-blue-200' : 'text-slate-400'}">${day.dateLabel}</span>
+        `;
+        container.appendChild(btn);
+      });
+    }
+
+    function selectDay(num) {
+      tripData.currentDay = num;
+      renderDayTabs();
+      renderTimeline();
+    }
+
+    function renderTimeline() {
+      const curDay = tripData.days.find(d => d.dayNumber === tripData.currentDay) || tripData.days[0];
+      
+      document.getElementById('dayBadge').innerText = `Day ${curDay.dayNumber}`;
+      document.getElementById('daySummaryTitle').innerText = curDay.summary;
+      document.getElementById('daySummaryDate').innerText = curDay.fullDate;
+
+      const timelineEl = document.getElementById('timelineContainer');
+      timelineEl.innerHTML = '';
+
+      curDay.items.forEach((item, idx) => {
+        const row = document.createElement('div');
+        row.className = "relative z-10 flex items-start gap-4 pl-1";
+
+        let iconTag = '<i class="fa-solid fa-map-pin text-fuji-700"></i>';
+        if (item.category === 'flight') iconTag = '<i class="fa-solid fa-plane text-blue-600"></i>';
+        else if (item.category === 'hotel') iconTag = '<i class="fa-solid fa-bed text-purple-600"></i>';
+        else if (item.category === 'tour') iconTag = '<i class="fa-solid fa-car text-emerald-600"></i>';
+        else if (item.category === 'food') iconTag = '<i class="fa-solid fa-utensils text-rose-600"></i>';
+
+        const isUnfixedFood = item.title.includes('미정');
+
+        row.innerHTML = `
+          <div class="w-10 h-10 rounded-full bg-white border-2 border-slate-300 flex items-center justify-center text-sm shadow-md flex-shrink-0 mt-0.5 z-10">
+            ${iconTag}
+          </div>
+          <div class="flex-1 bg-white rounded-2xl p-4 border-2 ${isUnfixedFood ? 'border-dashed border-rose-400 bg-rose-50/30' : 'border-slate-200'} shadow-md hover:border-slate-400 transition w-full overflow-hidden">
+            <div class="flex flex-wrap items-center justify-between mb-2 gap-2">
+              <button onclick="editScheduleItem(${idx}, true)" title="클릭하여 시간 수정" class="group font-mono text-[13px] font-extrabold text-slate-800 bg-slate-100 hover:bg-blue-50 hover:text-fuji-800 hover:border-blue-300 px-2.5 py-1 rounded-md shadow-sm border border-slate-200 flex items-center gap-1.5 transition active:scale-95">
+                <i class="fa-regular fa-clock text-slate-400 group-hover:text-fuji-600 text-[11px]"></i>
+                <span>${item.time}</span>
+                <i class="fa-solid fa-pen text-[10px] text-slate-400 group-hover:text-fuji-600 no-print"></i>
+              </button>
+              <div class="flex items-center gap-1.5">
+                ${isUnfixedFood ? '<span class="text-[11px] bg-rose-100 text-rose-700 font-extrabold px-2 py-0.5 rounded shadow-sm">직접입력</span>' : ''}
+                <span class="text-[12px] font-extrabold px-2.5 py-1 rounded-full border ${item.badgeColor || 'bg-slate-100 text-slate-700 border-slate-300'} shadow-sm">
+                  ${item.categoryName || '일정'}
+                </span>
+              </div>
+            </div>
+            <h4 class="text-base font-extrabold text-slate-900 leading-snug break-keep">${item.title}</h4>
+            <p class="text-[14px] text-slate-600 mt-1.5 font-medium leading-relaxed">${item.details}</p>
+            ${item.memo ? `
+              <div class="mt-3 text-[13px] bg-amber-50 border-l-4 border-amber-400 p-2.5 rounded-r text-amber-900 font-semibold leading-relaxed flex items-start gap-1.5 shadow-sm">
+                <i class="fa-regular fa-lightbulb text-amber-600 mt-1"></i>
+                <span class="flex-1 break-keep">${item.memo}</span>
+              </div>
+            ` : ''}
+            <div class="mt-3.5 pt-3 border-t-2 border-slate-100 flex items-center justify-between text-xs font-bold">
+              <a href="https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(item.locationQuery || item.title)}" target="_blank" class="text-fuji-700 hover:text-fuji-900 bg-blue-50 px-3 py-1.5 rounded-lg border border-blue-100 shadow-sm flex items-center gap-1">
+                <i class="fa-solid fa-map-location-dot"></i> 지도 보기
+              </a>
+              <div class="space-x-1 no-print flex items-center">
+                <button onclick="editScheduleItem(${idx}, false)" class="text-blue-700 bg-slate-100 px-2.5 py-1.5 rounded-lg hover:bg-blue-100 flex items-center gap-1" title="시간 및 일정 수정">
+                  <i class="fa-solid fa-pen"></i> <span>수정</span>
+                </button>
+                <button onclick="deleteScheduleItem(${idx})" class="text-rose-600 bg-slate-100 px-2.5 py-1.5 rounded-lg hover:bg-rose-100" title="삭제">
+                  <i class="fa-solid fa-trash"></i>
+                </button>
+              </div>
+            </div>
+          </div>
+        `;
+        timelineEl.appendChild(row);
+      });
+    }
+
+    // CHECKLIST
+    function renderChecklist() {
+      const container = document.getElementById('checklistItems');
+      container.innerHTML = '';
+      
+      const total = tripData.checklist.length;
+      const checkedCount = tripData.checklist.filter(c => c.checked).length;
+      document.getElementById('checklistProgress').innerText = `${checkedCount}/${total} 완료`;
+
+      tripData.checklist.forEach((item, index) => {
+        const row = document.createElement('div');
+        row.className = "flex items-center justify-between p-3 rounded-xl bg-slate-50 border border-slate-200 shadow-sm hover:bg-slate-100 transition";
+        row.innerHTML = `
+          <label class="flex items-center gap-3 cursor-pointer flex-1">
+            <input type="checkbox" ${item.checked ? 'checked' : ''} onchange="toggleChecklist(${index})" class="w-5 h-5 rounded text-fuji-700 focus:ring-fuji-600 border-slate-400">
+            <span class="text-[14px] ${item.checked ? 'line-through text-slate-400 font-medium' : 'text-slate-800 font-extrabold'}">${item.text}</span>
+          </label>
+          <button onclick="deleteChecklistItem(${index})" class="text-slate-400 hover:text-rose-500 p-2 no-print">
+            <i class="fa-solid fa-trash"></i>
+          </button>
+        `;
+        container.appendChild(row);
+      });
+    }
+
+    function toggleChecklist(index) {
+      tripData.checklist[index].checked = !tripData.checklist[index].checked;
+      saveToStorage();
+      renderChecklist();
+    }
+
+    function addChecklistItem() {
+      const input = document.getElementById('newChecklistInput');
+      const val = input.value.trim();
+      if (!val) return;
+      tripData.checklist.push({ id: Date.now(), text: val, checked: false });
+      input.value = '';
+      saveToStorage();
+      renderChecklist();
+      showToast("준비물이 추가되었습니다.");
+    }
+
+    function deleteChecklistItem(index) {
+      tripData.checklist.splice(index, 1);
+      saveToStorage();
+      renderChecklist();
+    }
+
+    // CURRENCY CONVERSION
+    function convertCurrency() {
+      const amount = parseFloat(document.getElementById('foreignAmount').value) || 0;
+      const rate = 8.444;
+      const krw = Math.round(amount * rate);
+      document.getElementById('krwResult').innerText = `약 ${krw.toLocaleString()}원`;
+    }
+
+    // TABS
+    function switchMainTab(tab) {
+      ['itinerary', 'checklist', 'info'].forEach(t => {
+        const sec = document.getElementById(`section-${t}`);
+        const btn = document.getElementById(`tabBtn-${t}`);
+        if (t === tab) {
+          sec.classList.remove('hidden');
+          btn.className = "flex-1 py-2.5 text-center rounded-lg bg-white text-fuji-800 shadow transition border border-slate-200 font-extrabold scale-[1.02] z-10 relative";
+        } else {
+          sec.classList.add('hidden');
+          btn.className = "flex-1 py-2.5 text-center rounded-lg text-slate-600 hover:text-slate-900 transition font-bold";
+        }
+      });
+    }
+
+    // MODAL HANDLERS
+    function openModal(id) { document.getElementById(id).classList.remove('hidden'); }
+    function closeModal(id) { document.getElementById(id).classList.add('hidden'); }
+
+    // EDIT HEADER MODAL
+    function openEditModal() {
+      document.getElementById('editTripTitle').value = tripData.title;
+      document.getElementById('editDates').value = tripData.dates;
+      document.getElementById('resetConfirmBox').classList.add('hidden');
+      openModal('editModal');
+    }
+
+    function saveHeaderEdits() {
+      tripData.title = document.getElementById('editTripTitle').value;
+      tripData.dates = document.getElementById('editDates').value;
+      saveToStorage();
+      renderHeader();
+      closeModal('editModal');
+      showToast("설정이 저장되었습니다.");
+    }
+
+    // DAY TITLE EDIT MODAL (일정 타이틀 및 텍스트 수정)
+    function openEditDayTitlePrompt() {
+      const curDay = tripData.days.find(d => d.dayNumber === tripData.currentDay);
+      if (!curDay) return;
+      document.getElementById('editDayNumSpan').innerText = curDay.dayNumber;
+      document.getElementById('editDaySummaryInput').value = curDay.summary || "";
+      document.getElementById('editDayFullDateInput').value = curDay.fullDate || "";
+      openModal('dayTitleModal');
+      setTimeout(() => document.getElementById('editDaySummaryInput').focus(), 100);
+    }
+
+    function saveDayTitleChanges() {
+      const curDay = tripData.days.find(d => d.dayNumber === tripData.currentDay);
+      if (!curDay) return;
+      
+      const newSummary = document.getElementById('editDaySummaryInput').value.trim();
+      const newFullDate = document.getElementById('editDayFullDateInput').value.trim();
+      
+      if (newSummary) curDay.summary = newSummary;
+      if (newFullDate) curDay.fullDate = newFullDate;
+
+      saveToStorage();
+      renderTimeline();
+      closeModal('dayTitleModal');
+      showToast("Day 일정 텍스트가 변경되었습니다.");
+    }
+
+    // SCHEDULE ITEM MODAL
+    function getBadgeColorByCategory(cat) {
+      if (cat === 'flight') return 'bg-blue-100 text-blue-800 border-blue-300';
+      if (cat === 'hotel') return 'bg-purple-100 text-purple-800 border-purple-300';
+      if (cat === 'food') return 'bg-rose-100 text-rose-800 border-rose-300';
+      return 'bg-emerald-100 text-emerald-800 border-emerald-300';
+    }
+
+    function syncCategoryDefaultLabel() {
+      const cat = document.getElementById('schedCategorySelect').value;
+      const nameInput = document.getElementById('schedCategoryNameInput');
+      if (!nameInput.value.trim()) {
+        const defaults = { tour: '관광/이동', food: '식사', hotel: '숙소/휴식', flight: '공항/항공' };
+        nameInput.value = defaults[cat] || '일정';
+      }
+    }
+
+    function addNewSchedulePrompt() {
+      editingScheduleIndex = null;
+      document.getElementById('scheduleModalHeader').innerHTML = `<i class="fa-solid fa-plus-circle text-fuji-700 text-lg"></i> 새 일정 추가 (Day ${tripData.currentDay})`;
+      document.getElementById('schedTimeInput').value = "12:30";
+      document.getElementById('schedCategorySelect').value = "food";
+      document.getElementById('schedCategoryNameInput').value = "식사/일정";
+      document.getElementById('schedTitleInput').value = "";
+      document.getElementById('schedDetailsInput').value = "";
+      document.getElementById('schedMemoInput').value = "";
+      document.getElementById('schedLocationInput').value = "";
+      openModal('scheduleItemModal');
+      setTimeout(() => document.getElementById('schedTimeInput').focus(), 100);
+    }
+
+    function editScheduleItem(idx, focusTime = false) {
+      const curDay = tripData.days.find(d => d.dayNumber === tripData.currentDay);
+      if (!curDay || !curDay.items[idx]) return;
+      const item = curDay.items[idx];
+
+      editingScheduleIndex = idx;
+      document.getElementById('scheduleModalHeader').innerHTML = `<i class="fa-regular fa-clock text-fuji-700 text-lg"></i> 시간 및 일정 수정 (Day ${tripData.currentDay})`;
+      document.getElementById('schedTimeInput').value = item.time || "";
+      document.getElementById('schedCategorySelect').value = item.category || "tour";
+      document.getElementById('schedCategoryNameInput').value = item.categoryName || "일정";
+      document.getElementById('schedTitleInput').value = item.title || "";
+      document.getElementById('schedDetailsInput').value = item.details || "";
+      document.getElementById('schedMemoInput').value = item.memo || "";
+      document.getElementById('schedLocationInput').value = item.locationQuery || "";
+
+      openModal('scheduleItemModal');
+      setTimeout(() => {
+        const targetInput = focusTime ? document.getElementById('schedTimeInput') : document.getElementById('schedTitleInput');
+        targetInput.focus();
+      }, 100);
+    }
+
+    function saveScheduleItemModal() {
+      const curDay = tripData.days.find(d => d.dayNumber === tripData.currentDay);
+      if (!curDay) return;
+
+      const timeVal = document.getElementById('schedTimeInput').value.trim() || "시간 미정";
+      const catVal = document.getElementById('schedCategorySelect').value;
+      const catNameVal = document.getElementById('schedCategoryNameInput').value.trim() || "일정";
+      const titleVal = document.getElementById('schedTitleInput').value.trim() || "새 일정";
+      const detailsVal = document.getElementById('schedDetailsInput').value.trim();
+      const memoVal = document.getElementById('schedMemoInput').value.trim();
+      const locVal = document.getElementById('schedLocationInput').value.trim() || titleVal;
+
+      const updatedItem = {
+        time: timeVal,
+        category: catVal,
+        categoryName: catNameVal,
+        badgeColor: getBadgeColorByCategory(catVal),
+        title: titleVal,
+        details: detailsVal,
+        memo: memoVal,
+        locationQuery: locVal
+      };
+
+      if (editingScheduleIndex === null) {
+        curDay.items.push(updatedItem);
+        showToast("새 일정이 추가되었습니다.");
+      } else {
+        curDay.items[editingScheduleIndex] = updatedItem;
+        showToast("일정 및 시간이 수정되었습니다.");
+      }
+
+      saveToStorage();
+      renderTimeline();
+      closeModal('scheduleItemModal');
+    }
+
+    function deleteScheduleItem(idx) {
+      const curDay = tripData.days.find(d => d.dayNumber === tripData.currentDay);
+      if (!curDay) return;
+      curDay.items.splice(idx, 1);
+      saveToStorage();
+      renderTimeline();
+      showToast("일정이 삭제되었습니다.");
+    }
+
+    function resetToInitialTrip() {
+      document.getElementById('resetConfirmBox').classList.remove('hidden');
+    }
+
+    function confirmResetTrip() {
+      tripData = JSON.parse(JSON.stringify(INITIAL_TRIP_DATA));
+      saveToStorage();
+      initApp();
+      closeModal('editModal');
+      showToast("초기화가 완료되었습니다.");
+    }
+
+    function saveToStorage() {
+      localStorage.setItem(STORAGE_KEY, JSON.stringify(tripData));
+    }
+
+    function copyCurrentUrl() {
+      const dummy = document.createElement('input');
+      dummy.value = window.location.href;
+      document.body.appendChild(dummy);
+      dummy.select();
+      document.execCommand('copy');
+      document.body.removeChild(dummy);
+      showToast("일정표 링크가 복사되었습니다!");
+    }
+
+    function sharePlan() {
+      if (navigator.share) {
+        navigator.share({
+          title: tripData.title,
+          text: `[가족여행] ${tripData.dates} 후지산 힐링 여행 일정표입니다.`,
+          url: window.location.href
+        }).catch(() => copyCurrentUrl());
+      } else {
+        copyCurrentUrl();
+      }
+    }
+
+    function showToast(msg) {
+      const toast = document.getElementById('toast');
+      document.getElementById('toastMsg').innerText = msg;
+      toast.classList.remove('opacity-0');
+      toast.classList.add('opacity-100');
+      setTimeout(() => {
+        toast.classList.remove('opacity-100');
+        toast.classList.add('opacity-0');
+      }, 2300);
+    }
+
+    window.onload = function() {
+      initApp();
+    };
+  </script>
+</body>
+</html>
